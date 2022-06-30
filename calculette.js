@@ -2,7 +2,7 @@ let on = false;
 let element = document.getElementById("element");
 let bouton = document.getElementsByTagName("input");
 
-bouton[0].onclick = (e) =>{
+bouton[0].addEventListener("click", (e) =>{
     if(e.target['value'] == "OFF"){
         on = true;
         e.target['value'] = "ON";
@@ -15,24 +15,24 @@ bouton[0].onclick = (e) =>{
         element.value = "" 
         e.target.style.backgroundColor = "red"
     }
-}
+})
 
-bouton[1].onclick = (e) =>{
+bouton[1].addEventListener("click", (e) =>{
     if(on){
         element.value ="0";
     }
-}
-bouton[2].onclick = (e) =>{
+})
+bouton[2].addEventListener("click", (e) =>{
     if(on){
         let invTexte = element.value.split('').reverse().join('')
         element.value = (invTexte.substring(1,invTexte.length)).split('').reverse().join('')
     }    
-}
+})
 
 for(i=3;i<bouton.length-1;i++){
-    bouton[i].onclick = (e)=>{
+    bouton[i].addEventListener("click", (e)=>{
         if(on) element.value += e.target['value']
-    }    
+    })    
 }
 
 const calcul = (op,n1,n2) =>{
@@ -43,7 +43,7 @@ const calcul = (op,n1,n2) =>{
     if(op == "%") return n1%n2;
 }
 
-bouton[bouton.length-1].onclick = ()=>{
+bouton[bouton.length-1].addEventListener("click", ()=>{
     let texte = element.value;
     let nombreOperateur = 0;
     let indexOp = [];
@@ -113,4 +113,4 @@ bouton[bouton.length-1].onclick = ()=>{
         valeur = calcul(operateur[4],valeur,parseFloat(nombre6));
         element.value += "="+valeur 
     }
-} 
+})
