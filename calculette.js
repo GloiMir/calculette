@@ -1,7 +1,8 @@
-let element = document.getElementById("element");
 let on = false;
+let element = document.getElementById("element");
+let bouton = document.getElementsByTagName("input");
 
-document.getElementById("on").onclick = (e) =>{
+bouton[0].onclick = (e) =>{
     if(e.target['value'] == "OFF"){
         on = true;
         e.target['value'] = "ON";
@@ -16,64 +17,22 @@ document.getElementById("on").onclick = (e) =>{
     }
 }
 
-document.getElementById("C").onclick = (e) =>{
+bouton[1].onclick = (e) =>{
     if(on){
         element.value ="0";
     }
 }
-document.getElementById("X").onclick = (e) =>{
+bouton[2].onclick = (e) =>{
     if(on){
         let invTexte = element.value.split('').reverse().join('')
         element.value = (invTexte.substring(1,invTexte.length)).split('').reverse().join('')
     }    
 }
-document.getElementById("%").onclick = (e) =>{
-    if(on)element.value += e.target['value']
-}
-document.getElementById("/").onclick = (e) =>{
-    if(on)element.value += e.target['value']
-}
-document.getElementById("7").onclick = (e) =>{
-    if(on)element.value += e.target['value']
-}
-document.getElementById("8").onclick = (e) =>{
-    if(on)element.value += e.target['value']
-}
-document.getElementById("9").onclick = (e) =>{
-    if(on)element.value += e.target['value']
-}
-document.getElementById("*").onclick = (e) =>{
-    if(on)element.value += e.target['value']
-}
-document.getElementById("4").onclick = (e) =>{
-    if(on)element.value += e.target['value']
-}
-document.getElementById("5").onclick = (e) =>{
-    if(on)element.value += e.target['value']
-}
-document.getElementById("6").onclick = (e) =>{
-    if(on)element.value += e.target['value']
-}
-document.getElementById("-").onclick = (e) =>{
-    if(on)element.value += e.target['value']
-}
-document.getElementById("1").onclick = (e) =>{
-    if(on)element.value += e.target['value']
-}
-document.getElementById("2").onclick = (e) =>{
-    if(on)element.value += e.target['value']
-}
-document.getElementById("3").onclick = (e) =>{
-    if(on)element.value += e.target['value']
-}
-document.getElementById("+").onclick = (e) =>{
-    if(on)element.value += e.target['value']
-}
-document.getElementById("0").onclick = (e) =>{
-    if(on)element.value += e.target['value']
-}
-document.getElementById(".").onclick = (e) =>{
-    if(on)element.value += e.target['value']
+
+for(i=3;i<bouton.length-1;i++){
+    bouton[i].onclick = (e)=>{
+        if(on) element.value += e.target['value']
+    }    
 }
 
 const calcul = (op,n1,n2) =>{
@@ -84,7 +43,7 @@ const calcul = (op,n1,n2) =>{
     if(op == "%") return n1%n2;
 }
 
-document.getElementById("calcul").onclick = ()=>{
+bouton[bouton.length-1].onclick = ()=>{
     let texte = element.value;
     let nombreOperateur = 0;
     let indexOp = [];
